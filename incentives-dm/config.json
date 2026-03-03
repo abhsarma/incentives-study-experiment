@@ -38,7 +38,7 @@
             "type": "react-component",
             "response": [{
                 "id": "decision",
-                "prompt": "Based on the forecast above, would you send blankets to the affected regions?",
+                "prompt": "Based on the forecast above, would you salt the road?",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "radio",
@@ -56,9 +56,22 @@
         }
     },
     "components": {
-        "introduction": {
+        "introduction-base": {
             "type": "markdown",
-            "path": "incentives-dm/assets/00-introduction.md",
+            "path": "incentives-dm/assets/00-intro-base.md",
+            "response": [{
+                "id": "prolificId",
+                "prompt": "Prolific ID:",
+                "required": false,
+                "location": "belowStimulus",
+                "type": "shortText",
+				"paramCapture": "PROLIFIC_PID",
+                "placeholder": "Prolific ID"
+            }]
+        },
+        "introduction-inc-lg": {
+            "type": "markdown",
+            "path": "incentives-dm/assets/00-intro-lg.md",
             "response": [{
                 "id": "prolificId",
                 "prompt": "Prolific ID:",
@@ -93,22 +106,14 @@
             "path": "incentives-dm/assets/02-tutorial-dens.md",
             "response": []
         },
-        "training-1-ci": 
-            {"baseComponent": "training", "parameters": {"index": 1, "vis": "ci", "target": 65}, "correctAnswer": [{"id": "trainingProb", "answer": 10}]},
-        "training-2-ci": 
-            {"baseComponent": "training", "parameters": {"index": 2, "vis": "ci", "target": 60}, "correctAnswer": [{"id": "trainingProb", "answer": 25}]},
-        "training-3-ci": 
-            {"baseComponent": "training", "parameters": {"index": 3, "vis": "ci", "target": 69}, "correctAnswer": [{"id": "trainingProb", "answer": 60}]},
-        "training-4-ci": 
-            {"baseComponent": "training", "parameters": {"index": 4, "vis": "ci", "target": 74}, "correctAnswer": [{"id": "trainingProb", "answer": 95}]},
-        "training-1-dens": 
-            {"baseComponent": "training", "parameters": {"index": 1, "vis": "dens", "target": 65}, "correctAnswer": [{"id": "trainingProb", "answer": 10}]},
-        "training-2-dens": 
-            {"baseComponent": "training", "parameters": {"index": 2, "vis": "dens", "target": 60}, "correctAnswer": [{"id": "trainingProb", "answer": 25}]},
-        "training-3-dens": 
-            {"baseComponent": "training", "parameters": {"index": 3, "vis": "dens", "target": 69}, "correctAnswer": [{"id": "trainingProb", "answer": 60}]},
-        "training-4-dens": 
-            {"baseComponent": "training", "parameters": {"index": 4, "vis": "dens", "target": 74}, "correctAnswer": [{"id": "trainingProb", "answer": 95}]},
+        "training-1-ci": {"baseComponent": "training", "parameters": {"index": 1, "vis": "ci", "target": 65}, "correctAnswer": [{"id": "trainingProb", "answer": 10}]},
+        "training-2-ci": {"baseComponent": "training", "parameters": {"index": 2, "vis": "ci", "target": 60}, "correctAnswer": [{"id": "trainingProb", "answer": 25}]},
+        "training-3-ci": {"baseComponent": "training", "parameters": {"index": 3, "vis": "ci", "target": 69}, "correctAnswer": [{"id": "trainingProb", "answer": 60}]},
+        "training-4-ci": {"baseComponent": "training", "parameters": {"index": 4, "vis": "ci", "target": 74}, "correctAnswer": [{"id": "trainingProb", "answer": 95}]},
+        "training-1-dens": {"baseComponent": "training", "parameters": {"index": 1, "vis": "dens", "target": 65}, "correctAnswer": [{"id": "trainingProb", "answer": 10}]},
+        "training-2-dens": {"baseComponent": "training", "parameters": {"index": 2, "vis": "dens", "target": 60}, "correctAnswer": [{"id": "trainingProb", "answer": 25}]},
+        "training-3-dens": {"baseComponent": "training", "parameters": {"index": 3, "vis": "dens", "target": 69}, "correctAnswer": [{"id": "trainingProb", "answer": 60}]},
+        "training-4-dens": {"baseComponent": "training", "parameters": {"index": 4, "vis": "dens", "target": 74}, "correctAnswer": [{"id": "trainingProb", "answer": 95}]},
         "trial-1-ci": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "ci"}},
         "trial-2-ci": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "ci"}},
         "trial-3-ci": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "ci"}},
@@ -145,44 +150,99 @@
         "trial-16-dens": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "dens"}},
         "trial-17-dens": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "dens"}},
         "trial-18-dens": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "dens"}},
-		"qual-q": {
-            "type": "react-component",
+		"summary": {"type": "react-component", "path": "incentives-dm/assets/05-summary.tsx", "response": []},
+        "qual-q-base": {
+            "type": "questionnaire",
             "response": [{
-				"id": "qual-strategy",
-                "prompt": "Please describe the strategy that you used in deciding whether or not to send blankets",
-                "required": true,
-                "location": "belowStimulus",
-                "type": "longText"
-            }, {
-				"id": "qual-incentives-history",
-                "prompt": "What has been your experience with receiving performance based bonuses in surveys",
-                "required": true,
-                "location": "belowStimulus",
-                "type": "longText"
-            }, {
-				"id": "qual-incentive-effect",
-                "prompt": "<span class='insert-text'></span>",
-                "required": true,
-                "location": "belowStimulus",
-                "type": "longText"
-            }, {
                 "id": "prolificId",
                 "prompt": "",
                 "required": false,
                 "hidden": true,
                 "paramCapture": "PROLIFIC_PID",
                 "type": "reactive"
-            }],
-            "path": "incentives-dm/assets/05-qual.tsx",
-            "instructionLocation": "aboveStimulus"
+            }, {
+                "id": "qual-strategy",
+                "prompt": "Please describe the strategy that you used in deciding whether or not to send salt",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }, {
+                "id": "qual-incentive-freq",
+                "prompt": "How often do you encounter surveys with performance-based bonuses? (1 = Never, 5 = Very Often)",
+                "secondaryText": "Decision-making studies such as this one often include performance-based bonuses (for example, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $1.5, and  awarded a bonus of $0.5 for every $1000 left in a bank account).",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "likert",
+                "numItems": 5
+            }, {
+                "id": "qual-incentives-history",
+                "prompt": "If you have encountered performance-based bonuses in surveys previously, what has been your experience with receiving such bonuses?",
+                "secondaryText": "If you have not encountered performance-based bonuses in surveys, please write 'N/A' in the text box",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }, {
+                "id": "qual-incentive-effect",
+                "prompt": "If, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $1.5 and  awarded a bonus of $0.5 for every $1000 left in a bank account, how do you think your performance would have changed?",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }]
+        },
+        "qual-q-inc-lg": {
+            "type": "questionnaire",
+            "response": [{
+                "id": "prolificId",
+                "prompt": "",
+                "required": false,
+                "hidden": true,
+                "paramCapture": "PROLIFIC_PID",
+                "type": "reactive"
+            },{
+                "id": "qual-strategy",
+                "prompt": "Please describe the strategy that you used in deciding whether or not to send salt",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }, {
+                "id": "qual-incentive-freq",
+                "prompt": "How often do you encounter surveys with performance-based bonuses? (1 = Never, 5 = Very Often)",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "likert",
+                "numItems": 5
+            }, {
+                "id": "qual-incentives-history",
+                "prompt": "If you have encountered performance-based bonuses in surveys previously, what has been your experience with receiving such bonuses?",
+                "secondaryText": "If you have not encountered performance-based bonuses in surveys, please write 'N/A' in the text box",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }, {
+                "id": "qual-incentive-effect",
+                "prompt": "If, instead of the guaranteed amount of $1.5 and bonus of $0.5 for every $1000 left in a bank account that you received, you were given a guaranteed amount of $3.5, how do you think your performance would have changed?",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }]
         }
     },
     "sequence": {
         "order": "fixed",
-        "components": [
-            "introduction",
+        "components": [{
+                "id": "base",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["introduction-base"]
+            }, {
+                "id": "inc-lg",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["introduction-inc-lg"]
+            }, 
+            "consent",
             {
-                "id": "vis-ci",
+                "id": "ci",
                 "conditional": true,
                 "order": "fixed",
                 "components": [
@@ -193,9 +253,8 @@
                         "components": ["training-1-ci", "training-2-ci", "training-3-ci", "training-4-ci"]
                     }
                 ]
-            },
-            {
-                "id": "vis-dens",
+            }, {
+                "id": "dens",
                 "conditional": true,
                 "order": "fixed",
                 "components": [
@@ -206,9 +265,8 @@
                         "components": ["training-1-dens", "training-2-dens", "training-3-dens", "training-4-dens"]
                     }
                 ]
-            },
-            {
-                "id": "vis-ci",
+            }, {
+                "id": "ci",
                 "conditional": true,
                 "components": [
                     "trial-1-ci", 
@@ -232,7 +290,7 @@
                 ],
                 "order": "random"
             }, {
-                "id": "vis-dens",
+                "id": "dens",
                 "conditional": true,
                 "components": [
                     "trial-1-dens", 
@@ -256,7 +314,18 @@
                 ],
                 "order": "random"
             },
-			"qual-q"
+            "summary",
+            {
+                "id": "base",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["qual-q-base"]
+            }, {
+                "id": "inc-lg",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["qual-q-inc-lg"]
+            }
         ]
     }
 }
