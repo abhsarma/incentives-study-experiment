@@ -51,8 +51,13 @@
                 "paramCapture": "PROLIFIC_PID",
                 "type": "reactive"
             }],
-            "path": "incentives-dm/assets/04-trial.tsx",
+            "path": "incentives-dm/assets/05-trial.tsx",
             "instructionLocation": "aboveStimulus"
+        },
+        "summary": {
+            "type": "react-component", 
+            "path": "incentives-dm/assets/06-summary.tsx",
+            "response": []
         }
     },
     "components": {
@@ -114,45 +119,55 @@
         "training-2-dens": {"baseComponent": "training", "parameters": {"index": 2, "vis": "dens", "target": 60}, "correctAnswer": [{"id": "trainingProb", "answer": 25}]},
         "training-3-dens": {"baseComponent": "training", "parameters": {"index": 3, "vis": "dens", "target": 69}, "correctAnswer": [{"id": "trainingProb", "answer": 60}]},
         "training-4-dens": {"baseComponent": "training", "parameters": {"index": 4, "vis": "dens", "target": 74}, "correctAnswer": [{"id": "trainingProb", "answer": 95}]},
-        "trial-1-ci": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "ci"}},
-        "trial-2-ci": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "ci"}},
-        "trial-3-ci": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "ci"}},
-        "trial-4-ci": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "ci"}},
-        "trial-5-ci": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "ci"}},
-        "trial-6-ci": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "ci"}},
-        "trial-7-ci": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "ci"}},
-        "trial-8-ci": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "ci"}},
-        "trial-9-ci": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "ci"}},
-        "trial-10-ci": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "ci"}},
-        "trial-11-ci": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "ci"}},
-        "trial-12-ci": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "ci"}},
-        "trial-13-ci": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "ci"}},
-        "trial-14-ci": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "ci"}},
-        "trial-15-ci": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "ci"}},
-        "trial-16-ci": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "ci"}},
-        "trial-17-ci": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "ci"}},
-        "trial-18-ci": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "ci"}},
-        "trial-1-dens": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "dens"}},
-        "trial-2-dens": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "dens"}},
-        "trial-3-dens": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "dens"}},
-        "trial-4-dens": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "dens"}},
-        "trial-5-dens": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "dens"}},
-        "trial-6-dens": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "dens"}},
-        "trial-7-dens": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "dens"}},
-        "trial-8-dens": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "dens"}},
-        "trial-9-dens": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "dens"}},
-        "trial-10-dens": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "dens"}},
-        "trial-11-dens": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "dens"}},
-        "trial-12-dens": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "dens"}},
-        "trial-13-dens": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "dens"}},
-        "trial-14-dens": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "dens"}},
-        "trial-15-dens": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "dens"}},
-        "trial-16-dens": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "dens"}},
-        "trial-17-dens": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "dens"}},
-        "trial-18-dens": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "dens"}},
-		"summary": {"type": "react-component", "path": "incentives-dm/assets/05-summary.tsx", "response": []},
+        "task-details-base": {
+            "type": "markdown",
+            "path": "incentives-dm/assets/04-instructions-base.md",
+            "response": []
+        },
+        "task-details-inc-lg": {
+            "type": "markdown",
+            "path": "incentives-dm/assets/04-instructions-inc-lg.md",
+            "response": []
+        },
+        "trial-1-ci": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-2-ci": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-3-ci": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-4-ci": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-5-ci": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-6-ci": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-7-ci": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-8-ci": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-9-ci": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-10-ci": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-11-ci": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-12-ci": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-13-ci": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-14-ci": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-15-ci": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-16-ci": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-17-ci": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-18-ci": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "trial-1-dens": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-2-dens": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-3-dens": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-4-dens": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-5-dens": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-6-dens": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-7-dens": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-8-dens": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-9-dens": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-10-dens": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-11-dens": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-12-dens": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-13-dens": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-14-dens": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-15-dens": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-16-dens": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-17-dens": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-18-dens": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
         "qual-q-base": {
-            "type": "questionnaire",
+            "baseComponent": "summary", 
+            "parameters": {"inc": "base"},
             "response": [{
                 "id": "prolificId",
                 "prompt": "",
@@ -190,7 +205,8 @@
             }]
         },
         "qual-q-inc-lg": {
-            "type": "questionnaire",
+            "baseComponent": "summary", 
+            "parameters": {"inc": "inc-lg"},
             "response": [{
                 "id": "prolificId",
                 "prompt": "",
@@ -266,6 +282,16 @@
                     }
                 ]
             }, {
+                "id": "base",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["task-details-base"]
+            }, {
+                "id": "inc-lg",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["task-details-inc-lg"]
+            }, {
                 "id": "ci",
                 "conditional": true,
                 "components": [
@@ -313,9 +339,7 @@
                     "trial-18-dens"
                 ],
                 "order": "random"
-            },
-            "summary",
-            {
+            }, {
                 "id": "base",
                 "conditional": true,
                 "order": "fixed",
