@@ -18,5 +18,5 @@ The graph can be interpreted as follows:
 
 <img style="" src="./incentives-dm/assets/img/tutorial/tutorial-02.png" alt="dist-interval95-explanation" width="95%"/><br/>
 
-<img style="" src="./incentives-dm/assets/img/tutorial/tutorial-04-dens.png" alt="dist-66_95-explanation" width="37.5%"/>
+<img style="" src="./incentives-dm/assets/img/tutorial/tutorial-04-dens.png" alt="dist-66_95-explanation" width="66.5%"/>
 

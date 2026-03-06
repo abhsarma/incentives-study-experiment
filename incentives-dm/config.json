@@ -27,11 +27,14 @@
                 "prompt": "What is the probability that the temperature falls below <span id='target'></span>°F?",
                 "secondaryText": "(Please provide a number between 0 and 100, and do not add a `%` to your response)",
                 "required": true,
-                "type": "shortText"
+                "type": "numerical",
+                "min": 0,
+                "max": 100
             }],
             "provideFeedback": true,
             "allowFailedTraining": true,
-            "trainingAttempts": 3,
+            "trainingAttempts": 5,
+            "nextButtonEnableTime": 5000,
             "instructionLocation": "aboveStimulus"
         },
         "trial": {
@@ -87,9 +90,23 @@
                 "placeholder": "Prolific ID"
             }]
         },
-        "consent": {
+        "consent-base": {
             "type": "markdown",
-            "path": "incentives-dm/assets/01-consent.md",
+            "path": "incentives-dm/assets/01-consent-base.md",
+            "previousButton": true,
+            "previousButtonText": "Back",
+            "response": [
+                {
+                    "id": "consentApproval",
+                    "prompt": "By clicking on 'Yes' below, you indicate that you have understood the Information Sheet and agree to participate in this study.",
+                    "type": "radio",
+                    "options": ["Yes", "No"]
+                }
+            ]
+        },
+        "consent-inc-lg": {
+            "type": "markdown",
+            "path": "incentives-dm/assets/01-consent-inc-lg.md",
             "previousButton": true,
             "previousButtonText": "Back",
             "response": [
@@ -111,14 +128,14 @@
             "path": "incentives-dm/assets/02-tutorial-dens.md",
             "response": []
         },
-        "training-1-ci": {"baseComponent": "training", "parameters": {"index": 1, "vis": "ci", "target": 65}, "correctAnswer": [{"id": "trainingProb", "answer": 10}]},
-        "training-2-ci": {"baseComponent": "training", "parameters": {"index": 2, "vis": "ci", "target": 60}, "correctAnswer": [{"id": "trainingProb", "answer": 25}]},
-        "training-3-ci": {"baseComponent": "training", "parameters": {"index": 3, "vis": "ci", "target": 69}, "correctAnswer": [{"id": "trainingProb", "answer": 60}]},
-        "training-4-ci": {"baseComponent": "training", "parameters": {"index": 4, "vis": "ci", "target": 74}, "correctAnswer": [{"id": "trainingProb", "answer": 95}]},
-        "training-1-dens": {"baseComponent": "training", "parameters": {"index": 1, "vis": "dens", "target": 65}, "correctAnswer": [{"id": "trainingProb", "answer": 10}]},
-        "training-2-dens": {"baseComponent": "training", "parameters": {"index": 2, "vis": "dens", "target": 60}, "correctAnswer": [{"id": "trainingProb", "answer": 25}]},
-        "training-3-dens": {"baseComponent": "training", "parameters": {"index": 3, "vis": "dens", "target": 69}, "correctAnswer": [{"id": "trainingProb", "answer": 60}]},
-        "training-4-dens": {"baseComponent": "training", "parameters": {"index": 4, "vis": "dens", "target": 74}, "correctAnswer": [{"id": "trainingProb", "answer": 95}]},
+        "training-1-ci": {"baseComponent": "training", "parameters": {"index": 1, "vis": "ci", "target": 16}, "correctAnswer": [{"id": "trainingProb", "answer": 10, "acceptableLow": 6, "acceptableHigh": 14}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "training-2-ci": {"baseComponent": "training", "parameters": {"index": 2, "vis": "ci", "target": 21}, "correctAnswer": [{"id": "trainingProb", "answer": 25, "acceptableLow": 21, "acceptableHigh": 30}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "training-3-ci": {"baseComponent": "training", "parameters": {"index": 3, "vis": "ci", "target": 18}, "correctAnswer": [{"id": "trainingProb", "answer": 60, "acceptableLow": 56, "acceptableHigh": 64}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "training-4-ci": {"baseComponent": "training", "parameters": {"index": 4, "vis": "ci", "target": 27}, "correctAnswer": [{"id": "trainingProb", "answer": 95, "acceptableLow": 90, "acceptableHigh": 96}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
+        "training-1-dens": {"baseComponent": "training", "parameters": {"index": 1, "vis": "dens", "target": 16}, "correctAnswer": [{"id": "trainingProb", "answer": 10, "acceptableLow": 6, "acceptableHigh": 14}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "training-2-dens": {"baseComponent": "training", "parameters": {"index": 2, "vis": "dens", "target": 21}, "correctAnswer": [{"id": "trainingProb", "answer": 25, "acceptableLow": 21, "acceptableHigh": 30}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "training-3-dens": {"baseComponent": "training", "parameters": {"index": 3, "vis": "dens", "target": 18}, "correctAnswer": [{"id": "trainingProb", "answer": 60, "acceptableLow": 56, "acceptableHigh": 64}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "training-4-dens": {"baseComponent": "training", "parameters": {"index": 4, "vis": "dens", "target": 27}, "correctAnswer": [{"id": "trainingProb", "answer": 95, "acceptableLow": 91, "acceptableHigh": 96}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
         "task-details-base": {
             "type": "markdown",
             "path": "incentives-dm/assets/04-instructions-base.md",
@@ -129,42 +146,81 @@
             "path": "incentives-dm/assets/04-instructions-inc-lg.md",
             "response": []
         },
-        "trial-1-ci": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-2-ci": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-3-ci": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-4-ci": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-5-ci": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-6-ci": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-7-ci": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-8-ci": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-9-ci": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-10-ci": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-11-ci": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-12-ci": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-13-ci": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-14-ci": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-15-ci": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-16-ci": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-17-ci": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-18-ci": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "trial-1-dens": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-2-dens": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-3-dens": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-4-dens": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-5-dens": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-6-dens": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-7-dens": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-8-dens": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-9-dens": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-10-dens": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-11-dens": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-12-dens": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-13-dens": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-14-dens": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-15-dens": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-16-dens": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-17-dens": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "trial-18-dens": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "trial-1-ci": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-2-ci": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-3-ci": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-4-ci": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-5-ci": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-6-ci": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-7-ci": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-8-ci": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-9-ci": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-10-ci": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-11-ci": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-12-ci": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-13-ci": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-14-ci": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-15-ci": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-16-ci": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-17-ci": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-18-ci": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "trial-1-dens": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-2-dens": {"baseComponent": "trial", "parameters": {"index": 2, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-3-dens": {"baseComponent": "trial", "parameters": {"index": 3, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-4-dens": {"baseComponent": "trial", "parameters": {"index": 4, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-5-dens": {"baseComponent": "trial", "parameters": {"index": 5, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-6-dens": {"baseComponent": "trial", "parameters": {"index": 6, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-7-dens": {"baseComponent": "trial", "parameters": {"index": 7, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-8-dens": {"baseComponent": "trial", "parameters": {"index": 8, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-9-dens": {"baseComponent": "trial", "parameters": {"index": 9, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-10-dens": {"baseComponent": "trial", "parameters": {"index": 10, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-11-dens": {"baseComponent": "trial", "parameters": {"index": 11, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-12-dens": {"baseComponent": "trial", "parameters": {"index": 12, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-13-dens": {"baseComponent": "trial", "parameters": {"index": 13, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-14-dens": {"baseComponent": "trial", "parameters": {"index": 14, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-15-dens": {"baseComponent": "trial", "parameters": {"index": 15, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-16-dens": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-17-dens": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "trial-18-dens": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "qual-q-base": {
+            "baseComponent": "summary", 
+            "parameters": {"inc": "base"},
+            "response": [{
+                "id": "prolificId",
+                "prompt": "",
+                "required": false,
+                "hidden": true,
+                "paramCapture": "PROLIFIC_PID",
+                "type": "reactive"
+            }, {
+                "id": "qual-strategy",
+                "prompt": "Please describe the strategy that you used in deciding whether or not to send salt",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }, {
+                "id": "qual-incentive-freq",
+                "prompt": "How often do you encounter surveys with performance-based bonuses? (1 = Never, 5 = Very Often)",
+                "secondaryText": "Decision-making studies such as this one often include performance-based bonuses (for example, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $1.5, and  awarded a bonus of $0.5 for every $1000 left in a bank account).",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "likert",
+                "numItems": 5
+            }, {
+                "id": "qual-incentives-history",
+                "prompt": "If you have encountered performance-based bonuses in surveys previously, what has been your experience with receiving such bonuses?",
+                "secondaryText": "If you have not encountered performance-based bonuses in surveys, please write 'N/A' in the text box",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }, {
+                "id": "qual-incentive-effect",
+                "prompt": "If, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $1.5 and  awarded a bonus of $0.5 for every $1000 left in a bank account, how do you think your performance would have changed?",
+                "required": true,
+                "location": "belowStimulus",
+                "type": "longText"
+            }]
+        },
         "qual-q-base": {
             "baseComponent": "summary", 
             "parameters": {"inc": "base"},
@@ -236,7 +292,7 @@
                 "type": "longText"
             }, {
                 "id": "qual-incentive-effect",
-                "prompt": "If, instead of the guaranteed amount of $1.5 and bonus of $0.5 for every $1000 left in a bank account that you received, you were given a guaranteed amount of $3.5, how do you think your performance would have changed?",
+                "prompt": "If, instead of the current reward structure (guaranteed amount of $1.5 and bonus of $0.5 for every $1000 left in a bank account) that you received, you were given a guaranteed amount of $3.5, how do you think your performance would have changed?",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "longText"
@@ -249,15 +305,13 @@
                 "id": "base",
                 "conditional": true,
                 "order": "fixed",
-                "components": ["introduction-base"]
+                "components": ["introduction-base", "consent-base"]
             }, {
                 "id": "inc-lg",
                 "conditional": true,
                 "order": "fixed",
-                "components": ["introduction-inc-lg"]
-            }, 
-            "consent",
-            {
+                "components": ["introduction-inc-lg", "consent-inc-lg"]
+            }, {
                 "id": "ci",
                 "conditional": true,
                 "order": "fixed",
