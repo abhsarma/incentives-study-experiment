@@ -12,10 +12,14 @@ function DisplayTrial({ parameters }: StimulusParams<any>) {
 
     useEffect(() => {
         setTimeout(() => {
-            d3.select("#target").html(target);
-            d3.select("div#trainingProb").on("click", () => { d3.select("#target").html(target); });
+            d3.select("#target").html(target);;
         }, 100)
-    }, []);
+
+        setTimeout(() => {
+            d3.select("div#trainingProb").on("click", () => { d3.select("#target").html(target); });
+            d3.select("input").on("keyup", () => { d3.select("#target").html(target); })
+        }, 10)
+    });
 
     return (
         <div className="chart-wrapper">

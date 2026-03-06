@@ -18,6 +18,7 @@ function boxMullerTransform(seed: number) {
 
 function rnorm(seed: number, mean: number, stddev: number) {
     const z = boxMullerTransform(seed);
+    console.log(mean, stddev, z, z * stddev + mean);
     return z * stddev + mean;
 }
 
@@ -82,25 +83,51 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
         // return current ? +current.trialOrder - 6 : 1;
     }, [answers, index]);
 
-    const budget = useMemo(() => {
+    const previousAnswer = useMemo(() => {
         const previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 1) : null;
-        const start = 18000;
 
         if (!previous?.answer.simulatedResult) {
-            return start;
+            return null
         }
 
         // @ts-ignore
-        return previous.answer.simulatedResult.startingBudget - (previous.answer.decision === 'Yes' ? 1000 : previous.answer.simulatedResult.simulated < 32 ? 5000 : 0);
+        return {decision: previous.answer.decision, simulatedTemp: previous.answer.simulatedResult.simulated, startingBudget: previous.answer.simulatedResult.startingBudget};
     }, [answers, index]);
 
+    let budget = 18000;
+    let prevResultText = "";
+    
+    if (previousAnswer) {
+        const cost = previousAnswer.decision === 'Yes' ? 1000 : previousAnswer.simulatedTemp < 0 ? 5000 : 0;
+        const decision = previousAnswer.decision === 'Yes' ? "salt" : "not salt"
+        const temp = Math.round(previousAnswer.simulatedTemp * 10) / 10
+
+        budget = previousAnswer.startingBudget - cost;
+
+        prevResultText = `In the previous trial you decided to ${decision} the roads. The actual temperature was ${temp}°C. The cost incurred was $${cost}.`
+    }
+    // useMemo(() => {
+    //     const previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 1) : null;
+    //     const start = 18000;
+
+    //     if (!previous?.answer.simulatedResult) {
+    //         return start;
+    //     }
+
+    //     // @ts-ignore
+    //     return previous.answer.simulatedResult.startingBudget - (previous.answer.decision === 'Yes' ? 1000 : previous.answer.simulatedResult.simulated < 32 ? 5000 : 0);
+    // }, [answers, index]);
+
     useEffect(() => {
-        const meansList = [37.38, 37.91, 34.40, 34.98, 34.96, 33.88, 32.94, 32.00, 31.28, 37.22, 37.34, 35.12, 34.69, 34.31, 32.91, 32.77, 32.00, 31.11];
-        const sdList = [3.1,  1.9,  2.8,  2.4,  3.3,  3.8,  2.8,  3.7,  3.4,  2.0,  2.5,  3.8,  1.9,  2.0,  3.3,  2.1,  4.1,  2.6];
+        const meansList = [5.55,  2.88,  4.21,  3.94,  2.09,  1.97,  0.70,  0.00, -0.89,  4.21,  5.34,  3.49,  3.94,  1.73,  1.73,  0.96,  0.00, -0.46];
+        const sdList = [3.3, 2.0, 3.5, 4.1, 2.9, 4.1, 2.9, 3.9, 3.7, 2.5, 3.7, 2.9, 4.1, 2.4, 3.6, 4.0, 3.0, 1.9];
         const tempMean = meansList[index - 1];
         const tempSd = sdList[index - 1];
-        const seed = cyrb128(prolificId + "_" + {index}); // change to prolific ID
+        const seed = cyrb128(prolificId + "_" + index); // change to prolific ID
         const temp = rnorm(seed[0], tempMean, tempSd); // simulate rnorm(mean)
+
+        console.log(prolificId + "_" + index);
+
 
         if (!forecast) {
             setForecast(temp);
@@ -115,8 +142,8 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
             setAnswer({
                 status: true,
                 answers: {
-                // @ts-ignore
-                simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: forecast, startingBudget: budget },
+                    // @ts-ignore
+                    simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: forecast, startingBudget: budget },
                 },
             });
         }
@@ -131,6 +158,7 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
                     /18
                 </h3>
                 <p>
+                    <span id="prev-decision">{prevResultText}</span><br/>
                     Budget Remaining: $
                     <span id="remaining-budget">{budget}</span>
                 </p>

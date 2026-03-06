@@ -1,3 +1,3 @@
 <br/><br/><br/>
-#### The help page will be available when the actual task begins.
+#### The help page is available for the training and task phases of the study.
 <br/><br/><br/>

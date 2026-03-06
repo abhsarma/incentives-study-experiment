@@ -18,8 +18,7 @@ const chartSettings = {
 function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{inc: string}>) {
     const { inc } = parameters;
 
-    const inc_amount = inc == "inc-sm" ? "2.5" : "1.5";
-    const inc_text = inc != "base" ? `Please do not worry if you have a negative budget. You are still guaranteed the minimum amount of $${inc_amount}.` : ""
+    const incAmount = inc == "inc-sm" ? "2.5" : "1.5";
 
     const current = useMemo(() => {
             // console.log(Object.entries(answers).find(([key, _]) => key.split("_")[0].includes("qual-q"))); // .find(([key, _]) => key.split("_")[0].includes("qual-q")))
@@ -34,14 +33,19 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{inc: s
         }
 
         // @ts-ignore
-        return previous.answer.simulatedResult.startingBudget - (previous.answer.decision === 'Yes' ? 1000 : previous.answer.simulatedResult.simulated < 32 ? 5000 : 0);
+        return previous.answer.simulatedResult.startingBudget - (previous.answer.decision === 'Yes' ? 1000 : previous.answer.simulatedResult.simulated < 0 ? 5000 : 0);
     }, [answers]);
+
+    const bonus = budget > 0 ? budget * 0.5 / 1000 : 0;
+    const awardText = inc == "base" ? "" : ` This translates to a bonus of $${bonus}.`;
+    const incText = (inc == "base" || budget > 0) ? "" :  `Please do not worry if you have a negative budget. You are still guaranteed the minimum amount of $${incAmount}.`
+    console.log(bonus, awardText, incText);
 
   return (
         <div className="chart-wrapper">
-            <p>You have completed all the trials! <b>Your remaining budget is: $<span id="remaining-budget">{budget}</span></b></p>
-            <p>{inc_text}</p>
-            <p>On the next page we will ask you some open-ended questions regarding your experience in performing the tasks in this survey.</p>
+            <p>You have completed all the trials! <b>Your remaining budget is: $<span id="remaining-budget">{budget}</span></b>.<span id="actual-award">{awardText}</span></p>
+            <p>{incText}</p>
+            <p>Please answer the following open-ended questions regarding your experience in performing the tasks in this survey.</p>
         </div>
     );
 }
