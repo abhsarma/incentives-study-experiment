@@ -59,7 +59,7 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
     const [forecast, setForecast] = useState<number>();
 
     const attentionCheckLoc = Object.keys(answers).map(d => d.split("_")[0].split("-")[0] === "attnCheck");
-    const attentionCheckIndices = attentionCheckLoc.reduce((out, bool, idx) => bool ? out.concat(idx) : out, [])
+    const attentionCheckIndices: number[] = attentionCheckLoc.reduce((out, bool, idx) => bool ? out.concat(idx) : out, [])
 
     let imgURL = ''
     if (index < 0) {
@@ -100,9 +100,9 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
 
     const previousAnswer = useMemo(() => {
         let previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 1) : null;
-        
-        // @ts-ignore
-        if (attentionCheckIndices.includes(+previous.trialOrder)) {
+        const previousTrialOrder = previous ? +previous.trialOrder : NaN;
+
+        if (attentionCheckIndices.includes(previousTrialOrder)) {
             // substract '2' to get the trial before last
             previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 2) : null;           
         }
