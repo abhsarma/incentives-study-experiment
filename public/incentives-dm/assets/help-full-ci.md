@@ -1,7 +1,7 @@
 ## Task details
 
 #### Scenario
-Assume that you work for a road maintenance company that is contracted to treat the roads in a town with salt brine to prevent icing when the temperature goes below freezing (0°C or 32°F). Applying salt brine to the roads is costly for your company; in addition, it also is detrimental to the environment as it can pollute groundwater and kill roadside vegetation. However, not salting the roads can cause significant accidents during freezing temperatures which are borne by your company.<br/>
+Assume that you work for a road maintenance company that is contracted to treat the roads in a town with salt brine to prevent icing when the temperature goes below freezing (0°C / 32°F). Applying salt brine to the roads is costly for your company; in addition, it also is detrimental to the environment as it can pollute groundwater and kill roadside vegetation. However, not salting the roads can cause significant accidents during freezing temperatures which are borne by your company.<br/>
 
 
 #### Task

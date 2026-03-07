@@ -18,7 +18,6 @@ function boxMullerTransform(seed: number) {
 
 function rnorm(seed: number, mean: number, stddev: number) {
     const z = boxMullerTransform(seed);
-    console.log(mean, stddev, z, z * stddev + mean);
     return z * stddev + mean;
 }
 
@@ -59,22 +58,38 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
     const { index, vis } = parameters;
     const [forecast, setForecast] = useState<number>();
 
-    const imgURL = `../incentives-dm/assets/img/trial/${vis}-trial-${index}.jpg`;
+    const attentionCheckLoc = Object.keys(answers).map(d => d.split("_")[0].split("-")[0] === "attnCheck");
+    const attentionCheckIndices = attentionCheckLoc.reduce((out, bool, idx) => bool ? out.concat(idx) : out, [])
+
+    let imgURL = ''
+    if (index < 0) {
+        imgURL = `../incentives-dm/assets/img/trial/attn-${vis}-trial-${Math.abs(index)}.jpg`;
+    } else {
+        imgURL = `../incentives-dm/assets/img/trial/${vis}-trial-${index}.jpg`;
+    }
 
     const prolificId = useMemo(() => {
         return Object.entries(answers)[0][1].answer.prolificId;
     }, [answers, index]);
 
     const current = useMemo(() => {
-            return Object.entries(answers).find(([key, _]) => key.split("_")[0] === `trial-${index}-${vis}`)?.[1];
-        }, [answers, index]);
+            if (index < 0) { // attention check
+                const attnIndex = index === -1 ? "low" : "high"
+                return Object.entries(answers).find(([key, _]) => key.split("_")[0] === `attnCheck-${attnIndex}-${vis}`)?.[1];
+            } else {
+                return Object.entries(answers).find(([key, _]) => key.split("_")[0] === `trial-${index}-${vis}`)?.[1];
+            }
+    }, [answers, index]);
 
     const trialIndex = useMemo(() => {
         if (current) {
             // gets the number of pre-trial pages by matching on first instance of trials in the `key` of the answers object
             // so that the correct trial index is shown to participants
             const intro_page_count = Object.entries(answers).find(([key, _]) => key.split("_")[0].includes("trial"))?.[0].split("_")[1];
-            return +current.trialOrder - Number(intro_page_count) + 1
+            const adjust = +current.trialOrder > attentionCheckIndices[1] ? 2 : +current.trialOrder > attentionCheckIndices[0] ? 1 : 0;
+            
+
+            return +current.trialOrder - Number(intro_page_count) + 1 - adjust;
         } else {
             return 1
         }
@@ -84,7 +99,13 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
     }, [answers, index]);
 
     const previousAnswer = useMemo(() => {
-        const previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 1) : null;
+        let previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 1) : null;
+        
+        // @ts-ignore
+        if (attentionCheckIndices.includes(+previous.trialOrder)) {
+            // substract '2' to get the trial before last
+            previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 2) : null;           
+        }
 
         if (!previous?.answer.simulatedResult) {
             return null
@@ -123,29 +144,28 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
         const sdList = [3.3, 2.0, 3.5, 4.1, 2.9, 4.1, 2.9, 3.9, 3.7, 2.5, 3.7, 2.9, 4.1, 2.4, 3.6, 4.0, 3.0, 1.9];
         const tempMean = meansList[index - 1];
         const tempSd = sdList[index - 1];
-        const seed = cyrb128(prolificId + "_" + index); // change to prolific ID
-        const temp = rnorm(seed[0], tempMean, tempSd); // simulate rnorm(mean)
+        const seed = cyrb128(prolificId + "_" + index);
+        const temp = index > 0 ? rnorm(seed[0], tempMean, tempSd) : -11; // simulate rnorm(mean)
 
-        console.log(prolificId + "_" + index);
-
-
-        if (!forecast) {
-            setForecast(temp);
-            setAnswer({
-                status: true,
-                answers: {
-                    // @ts-ignore
-                    simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: temp, startingBudget: budget },
-                },
-            });
-        } else {
-            setAnswer({
-                status: true,
-                answers: {
-                    // @ts-ignore
-                    simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: forecast, startingBudget: budget },
-                },
-            });
+        if (index > 0) {
+            if (!forecast) {
+                setForecast(temp);
+                setAnswer({
+                    status: true,
+                    answers: {
+                        // @ts-ignore
+                        simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: temp, startingBudget: budget },
+                    },
+                });
+            } else {
+                setAnswer({
+                    status: true,
+                    answers: {
+                        // @ts-ignore
+                        simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: forecast, startingBudget: budget },
+                    },
+                });
+            }
         }
     }, [index, setAnswer, budget, forecast]);
 

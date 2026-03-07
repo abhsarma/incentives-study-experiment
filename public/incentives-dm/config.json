@@ -16,25 +16,18 @@
         "autoDownloadStudy": false,
         "withSidebar": true,
         "urlParticipantIdParam": "PROLIFIC_PID",
-        "participantNameField": "introduction.prolificId"
+        "participantNameField": "introduction.prolificId",
+        "studyEndMsg": "Thank you for completing the study! Return to this link to receive credit: [https://app.prolific.com/submissions/complete?cc=C131PV6F](https://app.prolific.com/submissions/complete?cc=C131PV6F)"
     },
     "baseComponents": {
         "training": {
             "type": "react-component",
             "path": "incentives-dm/assets/03-training.tsx",
-            "response": [{
-                "id": "trainingProb",
-                "prompt": "What is the probability that the temperature falls below <span id='target'></span>°F?",
-                "secondaryText": "(Please provide a number between 0 and 100, and do not add a `%` to your response)",
-                "required": true,
-                "type": "numerical",
-                "min": 0,
-                "max": 100
-            }],
+            "response": [],
             "provideFeedback": true,
             "allowFailedTraining": true,
-            "trainingAttempts": 5,
-            "nextButtonEnableTime": 5000,
+            "trainingAttempts": 3,
+            "nextButtonEnableTime": 10000,
             "instructionLocation": "aboveStimulus"
         },
         "trial": {
@@ -127,15 +120,119 @@
             "type": "markdown",
             "path": "incentives-dm/assets/02-tutorial-dens.md",
             "response": []
+        }, 
+        "training-1-ci": {
+            "baseComponent": "training", 
+            "parameters": {"index": 1, "vis": "ci", "target": 16}, 
+            "response": [{
+                "id": "trainingProb-1",
+                "prompt": "What is the probability that the temperature falls below 16°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["5", "10", "7", "15"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-1", "answer": 10}], 
+            "helpTextPath": "incentives-dm/assets/help-ci.md"
         },
-        "training-1-ci": {"baseComponent": "training", "parameters": {"index": 1, "vis": "ci", "target": 16}, "correctAnswer": [{"id": "trainingProb", "answer": 10, "acceptableLow": 6, "acceptableHigh": 14}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "training-2-ci": {"baseComponent": "training", "parameters": {"index": 2, "vis": "ci", "target": 21}, "correctAnswer": [{"id": "trainingProb", "answer": 25, "acceptableLow": 21, "acceptableHigh": 30}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "training-3-ci": {"baseComponent": "training", "parameters": {"index": 3, "vis": "ci", "target": 18}, "correctAnswer": [{"id": "trainingProb", "answer": 60, "acceptableLow": 56, "acceptableHigh": 64}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "training-4-ci": {"baseComponent": "training", "parameters": {"index": 4, "vis": "ci", "target": 27}, "correctAnswer": [{"id": "trainingProb", "answer": 95, "acceptableLow": 90, "acceptableHigh": 96}], "helpTextPath": "incentives-dm/assets/help-ci.md"},
-        "training-1-dens": {"baseComponent": "training", "parameters": {"index": 1, "vis": "dens", "target": 16}, "correctAnswer": [{"id": "trainingProb", "answer": 10, "acceptableLow": 6, "acceptableHigh": 14}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "training-2-dens": {"baseComponent": "training", "parameters": {"index": 2, "vis": "dens", "target": 21}, "correctAnswer": [{"id": "trainingProb", "answer": 25, "acceptableLow": 21, "acceptableHigh": 30}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "training-3-dens": {"baseComponent": "training", "parameters": {"index": 3, "vis": "dens", "target": 18}, "correctAnswer": [{"id": "trainingProb", "answer": 60, "acceptableLow": 56, "acceptableHigh": 64}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
-        "training-4-dens": {"baseComponent": "training", "parameters": {"index": 4, "vis": "dens", "target": 27}, "correctAnswer": [{"id": "trainingProb", "answer": 95, "acceptableLow": 91, "acceptableHigh": 96}], "helpTextPath": "incentives-dm/assets/help-dens.md"},
+        "training-2-ci": {
+            "baseComponent": "training", 
+            "parameters": {"index": 2, "vis": "ci", "target": 21}, 
+            "response": [{
+                "id": "trainingProb-2",
+                "prompt": "What is the probability that the temperature falls below 21°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["15", "25", "20", "30"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-2", "answer": 25}], 
+            "helpTextPath": "incentives-dm/assets/help-ci.md"
+        },
+        "training-3-ci": {
+            "baseComponent": "training", 
+            "parameters": {"index": 3, "vis": "ci", "target": 18}, 
+            "response": [{
+                "id": "trainingProb-3",
+                "prompt": "What is the probability that the temperature falls below 18°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["55", "60", "65", "70"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-3", "answer": 60}], 
+            "helpTextPath": "incentives-dm/assets/help-ci.md"
+        },
+        "training-4-ci": {
+            "baseComponent": "training", 
+            "parameters": {"index": 4, "vis": "ci", "target": 27}, 
+            "response": [{
+                "id": "trainingProb-4",
+                "prompt": "What is the probability that the temperature falls below 27°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["89", "95", "92", "99"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-4", "answer": 95}], 
+            "helpTextPath": "incentives-dm/assets/help-ci.md"
+        },
+        "training-1-dens": {
+            "baseComponent": "training", 
+            "parameters": {"index": 1, "vis": "dens", "target": 16}, 
+            "response": [{
+                "id": "trainingProb-1",
+                "prompt": "What is the probability that the temperature falls below 16°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["5", "10", "7", "15"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-1", "answer": 10}], 
+            "helpTextPath": "incentives-dm/assets/help-dens.md"
+        },
+        "training-2-dens": {
+            "baseComponent": "training", 
+            "parameters": {"index": 2, "vis": "dens", "target": 21}, 
+            "response": [{
+                "id": "trainingProb-2",
+                "prompt": "What is the probability that the temperature falls below 21°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["15", "25", "20", "30"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-2", "answer": 25}], 
+            "helpTextPath": "incentives-dm/assets/help-dens.md"
+        },
+        "training-3-dens": {
+            "baseComponent": "training", 
+            "parameters": {"index": 3, "vis": "dens", "target": 18}, 
+            "response": [{
+                "id": "trainingProb-3",
+                "prompt": "What is the probability that the temperature falls below 18°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["55", "60", "65", "70"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-3", "answer": 60}], 
+            "helpTextPath": "incentives-dm/assets/help-dens.md"
+        },
+        "training-4-dens": {
+            "baseComponent": "training", 
+            "parameters": {"index": 4, "vis": "dens", "target": 27}, 
+            "response": [{
+                "id": "trainingProb-4",
+                "prompt": "What is the probability that the temperature falls below 27°C?",
+                "type": "radio",
+                "optionOrder": "random",
+                "horizontal": true,
+                "options": ["89", "95", "92", "99"]
+            }],
+            "correctAnswer": [{"id": "trainingProb-4", "answer": 95}], 
+            "helpTextPath": "incentives-dm/assets/help-dens.md"
+        },
         "task-details-base": {
             "type": "markdown",
             "path": "incentives-dm/assets/04-instructions-base.md",
@@ -182,6 +279,10 @@
         "trial-16-dens": {"baseComponent": "trial", "parameters": {"index": 16, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
         "trial-17-dens": {"baseComponent": "trial", "parameters": {"index": 17, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
         "trial-18-dens": {"baseComponent": "trial", "parameters": {"index": 18, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "attnCheck-low-ci": {"baseComponent": "trial", "parameters": {"index": -1, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "attnCheck-high-ci": {"baseComponent": "trial", "parameters": {"index": -2, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
+        "attnCheck-low-dens": {"baseComponent": "trial", "parameters": {"index": -1, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
+        "attnCheck-high-dens": {"baseComponent": "trial", "parameters": {"index": -2, "vis": "dens"}, "helpTextPath": "incentives-dm/assets/help-full-dens.md"},
         "qual-q-base": {
             "baseComponent": "summary", 
             "parameters": {"inc": "base"},
@@ -200,51 +301,15 @@
                 "type": "longText"
             }, {
                 "id": "qual-incentive-freq",
-                "prompt": "How often do you encounter surveys with performance-based bonuses? (1 = Never, 5 = Very Often)",
+                "prompt": "How often do you encounter surveys with performance-based bonuses?",
                 "secondaryText": "Decision-making studies such as this one often include performance-based bonuses (for example, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $1.5, and  awarded a bonus of $0.5 for every $1000 left in a bank account).",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "likert",
-                "numItems": 5
-            }, {
-                "id": "qual-incentives-history",
-                "prompt": "If you have encountered performance-based bonuses in surveys previously, what has been your experience with receiving such bonuses?",
-                "secondaryText": "If you have not encountered performance-based bonuses in surveys, please write 'N/A' in the text box",
-                "required": true,
-                "location": "belowStimulus",
-                "type": "longText"
-            }, {
-                "id": "qual-incentive-effect",
-                "prompt": "If, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $1.5 and  awarded a bonus of $0.5 for every $1000 left in a bank account, how do you think your performance would have changed?",
-                "required": true,
-                "location": "belowStimulus",
-                "type": "longText"
-            }]
-        },
-        "qual-q-base": {
-            "baseComponent": "summary", 
-            "parameters": {"inc": "base"},
-            "response": [{
-                "id": "prolificId",
-                "prompt": "",
-                "required": false,
-                "hidden": true,
-                "paramCapture": "PROLIFIC_PID",
-                "type": "reactive"
-            }, {
-                "id": "qual-strategy",
-                "prompt": "Please describe the strategy that you used in deciding whether or not to send salt",
-                "required": true,
-                "location": "belowStimulus",
-                "type": "longText"
-            }, {
-                "id": "qual-incentive-freq",
-                "prompt": "How often do you encounter surveys with performance-based bonuses? (1 = Never, 5 = Very Often)",
-                "secondaryText": "Decision-making studies such as this one often include performance-based bonuses (for example, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $1.5, and  awarded a bonus of $0.5 for every $1000 left in a bank account).",
-                "required": true,
-                "location": "belowStimulus",
-                "type": "likert",
-                "numItems": 5
+                "numItems": 5,
+                "leftLabel": "Never",
+                "rightLabel": "Very Often",
+                "labelLocation": "inline"
             }, {
                 "id": "qual-incentives-history",
                 "prompt": "If you have encountered performance-based bonuses in surveys previously, what has been your experience with receiving such bonuses?",
@@ -278,11 +343,14 @@
                 "type": "longText"
             }, {
                 "id": "qual-incentive-freq",
-                "prompt": "How often do you encounter surveys with performance-based bonuses? (1 = Never, 5 = Very Often)",
+                "prompt": "How often do you encounter surveys with performance-based bonuses?",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "likert",
-                "numItems": 5
+                "numItems": 5,
+                "leftLabel": "Never",
+                "rightLabel": "Very Often",
+                "labelLocation": "inline"
             }, {
                 "id": "qual-incentives-history",
                 "prompt": "If you have encountered performance-based bonuses in surveys previously, what has been your experience with receiving such bonuses?",
@@ -348,6 +416,7 @@
             }, {
                 "id": "ci",
                 "conditional": true,
+                "order": "random",
                 "components": [
                     "trial-1-ci", 
                     "trial-2-ci", 
@@ -368,10 +437,14 @@
                     "trial-17-ci", 
                     "trial-18-ci"
                 ],
-                "order": "random"
+                "interruptions": [
+                    {"spacing": "random", "numInterruptions": 1, "components": ["attnCheck-low-ci"]},
+                    {"spacing": "random", "numInterruptions": 1, "components": ["attnCheck-high-ci"]}
+                ]
             }, {
                 "id": "dens",
                 "conditional": true,
+                "order": "random",
                 "components": [
                     "trial-1-dens", 
                     "trial-2-dens", 
@@ -392,7 +465,10 @@
                     "trial-17-dens", 
                     "trial-18-dens"
                 ],
-                "order": "random"
+                "interruptions": [
+                    {"spacing": "random", "numInterruptions": 1, "components": ["attnCheck-low-dens"]},
+                    {"spacing": "random", "numInterruptions": 1, "components": ["attnCheck-high-dens"]}
+                ]
             }, {
                 "id": "base",
                 "conditional": true,
