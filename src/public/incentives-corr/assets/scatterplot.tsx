@@ -22,16 +22,14 @@ export default function ScatterPlots({
     const [data, setData] = useState<[number, number][]>([]);
     const [isHover, setIsHover] = useState<boolean>(false);
 
-    const margin = {
-    left: 0, top: 20, right: 20, bottom: 20,
-    };
+    const margin = {left: 0, top: 20, right: 20, bottom: 20};
     const innerHeight = height - margin.bottom;
     const innerWidth = width - margin.left - margin.right;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const filePath = `../incentives-corr/datasets/size_100/${datasetName}`;
+                const filePath = `../incentives-corr/datasets/${datasetName}`;
                 const response = await fetch(filePath);
 
                 if (!response.ok) {
@@ -58,8 +56,9 @@ export default function ScatterPlots({
     const createChart = useCallback(() => {
         if (data.length === 0) return;
 
-        const xScale = scaleLinear().domain([0, 1]).range([0, innerWidth]);
-        const yScale = scaleLinear().domain([0, 1]).range([innerHeight, 0]);
+        const offset = 0.02; // small value so that points are not drawn on the axes 
+        const xScale = scaleLinear().domain([0 - offset, 1 + offset]).range([0, innerWidth]);
+        const yScale = scaleLinear().domain([0 - offset, 1 + offset]).range([innerHeight, 0]);
 
         const xAxis = axisBottom(xScale).tickSize(0).tickFormat(() => '');
         const yAxis = axisLeft(yScale).tickSize(0).tickFormat(() => '');

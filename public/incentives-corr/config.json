@@ -3,14 +3,10 @@
     "studyMetadata": {
         "title": "Correlation Judgements using Visualization",
         "version": "pilot",
-        "authors": [
-            "Abhraneel Sarma"
-        ],
+        "authors": ["Abhraneel Sarma"],
         "date": "2026-02-08",
         "description": "A simple correlation judgement study",
-        "organizations": [
-            "Graz University of Technology"
-        ]
+        "organizations": ["Graz University of Technology"]
     },
     "uiConfig": {
         "contactEmail": "asarma@tugraz.at",
@@ -22,30 +18,70 @@
         "urlParticipantIdParam": "PROLIFIC_PID"
     },
     "baseComponents": {
+        "practice": {
+            "type": "react-component",
+            "path": "incentives-corr/assets/03-practice.tsx",
+            "stylesheetPath": "incentives-corr/assets/css/task.css",
+            "response": [{
+                "id": "training",
+                "prompt": "Please select the visualization that appears to have a larger correlation.",
+                "secondaryText": "You can either click the buttons (A or B) or use the‚ left and right keys.",
+                "required": true,
+                "type": "reactive",
+                "location": "aboveStimulus"
+            }],
+            "correctAnswer": [{"id": "training", "answer": "true"}]
+        },
         "task": {
             "type": "react-component",
             "response": [{
-                "id": "practiceResponse",
+                "id": "reactive",
                 "prompt": "Please select the visualization that appears to have a larger correlation.",
                 "secondaryText": "You can either click the buttons (A or B) or use the‚ left and right keys.",
-                "hidden": false,
+                "hidden": true,
                 "required": true,
                 "type": "reactive",
                 "location": "aboveStimulus"
             }],
             "path": "incentives-corr/assets/task.tsx",
             "instructionLocation": "aboveStimulus"
+        },
+        "summary": {
+            "type": "react-component", 
+            "path": "incentives-corr/assets/06-summary.tsx",
+            "response": []
         }
     },
     "components": {
-        "introduction": {
+        "introduction-base": {
             "type": "markdown",
-            "path": "incentives-corr/assets/00-introduction.md",
-            "response": []
+            "path": "incentives-corr/assets/00-intro-base.md",
+            "response": [{
+                "id": "prolificId",
+                "prompt": "Prolific ID:",
+                "required": false,
+                "location": "belowStimulus",
+                "type": "shortText",
+				"paramCapture": "PROLIFIC_PID",
+                "placeholder": "Prolific ID"
+            }]
         },
-        "consent": {
+        "introduction-inc-lg": {
             "type": "markdown",
-            "path": "incentives-corr/assets/01-consent.md",
+            "path": "incentives-corr/assets/00-intro-lg.md",
+            "response": [{
+                "id": "prolificId",
+                "prompt": "Prolific ID:",
+                "required": false,
+                "location": "belowStimulus",
+                "type": "shortText",
+				"paramCapture": "PROLIFIC_PID",
+                "placeholder": "Prolific ID"
+            }]
+        },
+        "consent-base": {
+            "type": "markdown",
+            "path": "incentives-corr/assets/01-consent-base.md",
             "previousButton": true,
             "previousButtonText": "Back",
             "response": [
@@ -57,46 +93,87 @@
                 }
             ]
         },
-        "training-1": {"baseComponent": "task", "parameters": {"r1": 0.3, "r2": 0.7}},
-        "training-2": {"baseComponent": "task", "parameters": {"r1": 0.9, "r2": 0.6}},
-        "training-3": {"baseComponent": "task", "parameters": {"r1": 0.6, "r2": 0.3}},
-        "training-4": {"baseComponent": "task", "parameters": {"r1": 0.6, "r2": 0.9}},
-        "training-5": {"baseComponent": "task", "parameters": {"r1": 0.3, "r2": 0.1}},
-        "training-6": {"baseComponent": "task", "parameters": {"r1": 0.5, "r2": 0.3}},
-        "training-7": {"baseComponent": "task", "parameters": {"r1": 0.9, "r2": 0.8}},
-        "training-8": {"baseComponent": "task", "parameters": {"r1": 0.6, "r2": 0.7}},
-        "training-9": {"baseComponent": "task", "parameters": {"r1": 0.99, "r2": 0.9}}
+        "consent-inc-lg": {
+            "type": "markdown",
+            "path": "incentives-corr/assets/01-consent-inc-lg.md",
+            "previousButton": true,
+            "previousButtonText": "Back",
+            "response": [
+                {
+                    "id": "consentApproval",
+                    "prompt": "By clicking on 'Yes' below, you indicate that you have understood the Information Sheet and agree to participate in this study.",
+                    "type": "radio",
+                    "options": ["Yes", "No"]
+                }
+            ]
+        },
+        "tutorial-scatter": {
+            "type": "markdown",
+            "path": "incentives-corr/assets/02-tutorial-scatter.md",
+            "response": []
+        },
+        "tutorial-pcp": {
+            "type": "markdown",
+            "path": "incentives-corr/assets/02-tutorial-pcp.md",
+            "response": []
+        },
+        "training-1-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.3, "r2": 0.7, "index": 1}},
+        "training-2-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.9, "r2": 0.6, "index": 2}},
+        "training-3-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.6, "r2": 0.3, "index": 3}},
+        "training-4-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.6, "r2": 0.9, "index": 4}},
+        "training-5-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.3, "r2": 0.1, "index": 5}},
+        "training-6-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.5, "r2": 0.3, "index": 6}},
+        "training-7-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.9, "r2": 0.8, "index": 7}},
+        "training-8-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.6, "r2": 0.7, "index": 8}},
+        "training-9-scatter": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "scatter", "r1": 0.99, "r2": 0.9, "index": 9}},
+        "training-1-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.3, "r2": 0.7, "index": 1}},
+        "training-2-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.9, "r2": 0.6, "index": 2}},
+        "training-3-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.6, "r2": 0.3, "index": 3}},
+        "training-4-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.6, "r2": 0.9, "index": 4}},
+        "training-5-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.3, "r2": 0.1, "index": 5}},
+        "training-6-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.5, "r2": 0.3, "index": 6}},
+        "training-7-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.9, "r2": 0.8, "index": 7}},
+        "training-8-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.6, "r2": 0.7, "index": 8}},
+        "training-9-pcp": {"baseComponent": "practice", "parameters": {"taskid": "training", "vis": "pcp", "r1": 0.99, "r2": 0.9, "index": 9}}
     },
     "sequence": {
         "order": "fixed",
         "components": [
-            "introduction",
-            {   
-                "order": "fixed",
-                "components": ["consent"],
-                "skip": [{
-                    "name": "consent",
-                    "check": "response",
-                    "responseId": "consentApproval",
-                    "value": "No",
-                    "comparison": "equal",
-                    "to": "end"
-                }]
-            },
             {
+                "id": "base",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["introduction-base", "consent-base"]
+            }, {
+                "id": "inc-lg",
+                "conditional": true,
+                "order": "fixed",
+                "components": ["introduction-inc-lg", "consent-inc-lg"]
+            }, {
+                "id": "scatter",
+                "conditional": true,
                 "order": "fixed",
                 "components": [
-                    "training-1",
-                    "training-2",
-                    "training-3",
-                    "training-4",
-                    "training-5",
-                    "training-6",
-                    "training-7",
-                    "training-8",
-                    "training-9"
+                    "tutorial-scatter",                     
+                    {   
+                        "id": "training-ci",
+                        "order": "random",
+                        "components": ["training-1-scatter", "training-2-scatter", "training-3-scatter", "training-4-scatter", "training-5-scatter", "training-6-scatter", "training-7-scatter", "training-8-scatter", "training-9-scatter"]
+                    }
                 ]
-            }              
+            }, {
+                "id": "pcp",
+                "conditional": true,
+                "order": "fixed",
+                "components": [
+                    "tutorial-pcp",
+                    {
+                        "id": "training-pcp",
+                        "order": "random",
+                        "components": ["training-1-pcp", "training-2-pcp", "training-3-pcp", "training-4-pcp", "training-5-pcp", "training-6-pcp", "training-7-pcp", "training-8-pcp", "training-9-pcp"]
+                    }
+                ]
+            }         
         ]
     }
 }
