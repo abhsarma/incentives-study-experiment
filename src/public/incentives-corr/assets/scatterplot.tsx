@@ -15,9 +15,7 @@ import { select } from 'd3-selection';
 const width = 300;
 const height = 300;
 
-export default function ScatterPlots({
-  r, onClick, datasetName,
-} : { r: number, onClick: () => void, datasetName: string }) {
+export default function ScatterPlots({onClick, datasetName} : { onClick: () => void, datasetName: string }) {
     const d3Container = useRef(null);
     const [data, setData] = useState<[number, number][]>([]);
     const [isHover, setIsHover] = useState<boolean>(false);
@@ -51,7 +49,7 @@ export default function ScatterPlots({
         };
 
         fetchData();
-    }, [r]);
+    }, []);
 
     const createChart = useCallback(() => {
         if (data.length === 0) return;

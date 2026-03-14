@@ -137,17 +137,6 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
 
         prevResultText = `In the previous trial you decided to ${decision} the roads. The actual temperature was ${temp}°C. The cost incurred was $${cost}.`
     }
-    // useMemo(() => {
-    //     const previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 1) : null;
-    //     const start = 18000;
-
-    //     if (!previous?.answer.simulatedResult) {
-    //         return start;
-    //     }
-
-    //     // @ts-ignore
-    //     return previous.answer.simulatedResult.startingBudget - (previous.answer.decision === 'Yes' ? 1000 : previous.answer.simulatedResult.simulated < 32 ? 5000 : 0);
-    // }, [answers, index]);
 
     useEffect(() => {
         const meansList = [5.55,  2.88,  4.21,  3.94,  2.09,  1.97,  0.70,  0.00, -0.89,  4.21,  5.34,  3.49,  3.94,  1.73,  1.73,  0.96,  0.00, -0.46];
@@ -167,7 +156,7 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
                     status: true,
                     answers: {
                         // @ts-ignore
-                        simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: temp, startingBudget: budget },
+                        simulatedResult: { seed: seed[0], tempMean: tempMean, tempSd: tempSd, simulated: temp, startingBudget: budget },
                     },
                 });
             } else {
@@ -175,7 +164,7 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{index:
                     status: true,
                     answers: {
                         // @ts-ignore
-                        simulatedResult: { seed: seed[0], tempMean: tempMean, simulated: forecast, startingBudget: budget },
+                        simulatedResult: { seed: seed[0], tempMean: tempMean, tempSd: tempSd, simulated: forecast, startingBudget: budget },
                     },
                 });
             }
