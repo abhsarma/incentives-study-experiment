@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Center, Stack, Text, Group, Button } from '@mantine/core';
 import ScatterPlots from './scatterplot';
 import ParallelCoords from './parallelcoords';
@@ -21,6 +21,20 @@ export default function PracticeScatter({
     const buttonBRef = useRef<HTMLButtonElement | null>(null);
 
     const [responded, setResponded] = useState<boolean>(false);
+
+    // Keybinding for left (A) and right (B)
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'ArrowLeft' && buttonARef.current) {
+                buttonARef.current.click();
+            } else if (event.key === 'ArrowRight' && buttonBRef.current) {
+                buttonBRef.current.click();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+            return () => {window.removeEventListener('keydown', handleKeyDown);};
+    }, []);
 
     const handleClick = (n: number) => {
         if (!responded) {
@@ -47,6 +61,11 @@ export default function PracticeScatter({
 
     return (
         <Stack style={{ width: '100%', height: '100%' }}>
+            <Text>
+                <span className="questionPrompt">Please select the visualization that appears to have a larger correlation.</span>
+                <span className="requiredQuestion">*</span><br/>
+                <span className="questionSecondaryText">You can either click the buttons (A or B) or use the‚ left and right keys</span>
+            </Text>
             <Center>
                 <Group style={{ gap: '80px' }}>
                     <Stack style={{ alignItems: 'center' }}>
