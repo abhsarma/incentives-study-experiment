@@ -17,7 +17,9 @@
         "withSidebar": true,
         "urlParticipantIdParam": "PROLIFIC_PID",
         "participantNameField": "introduction.prolificId",
-        "studyEndMsg": "Thank you for completing the study! Return to this link to receive credit: [https://app.prolific.com/submissions/complete?cc=C131PV6F](https://app.prolific.com/submissions/complete?cc=C131PV6F)"
+        "studyEndMsg": "Thank you for completing the study! Return to this link to receive credit: [https://app.prolific.com/submissions/complete?cc=C131PV6F](https://app.prolific.com/submissions/complete?cc=C131PV6F)",
+        "autoRedirectURL": "https://app.prolific.com/submissions/complete?cc=C131PV6F",
+        "autoRedirectDelay": 10000
     },
     "baseComponents": {
         "training": {
