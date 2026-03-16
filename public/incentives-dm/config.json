@@ -72,7 +72,7 @@
                 "placeholder": "Prolific ID"
             }]
         },
-        "introduction-inc-lg": {
+        "introduction-inc": {
             "type": "markdown",
             "path": "incentives-dm/assets/00-intro-lg.md",
             "response": [{
@@ -99,9 +99,9 @@
                 }
             ]
         },
-        "consent-inc-lg": {
+        "consent-inc": {
             "type": "markdown",
-            "path": "incentives-dm/assets/01-consent-inc-lg.md",
+            "path": "incentives-dm/assets/01-consent-inc.md",
             "previousButton": true,
             "previousButtonText": "Back",
             "response": [
@@ -240,9 +240,9 @@
             "path": "incentives-dm/assets/04-instructions-base.md",
             "response": []
         },
-        "task-details-inc-lg": {
+        "task-details-inc": {
             "type": "markdown",
-            "path": "incentives-dm/assets/04-instructions-inc-lg.md",
+            "path": "incentives-dm/assets/04-instructions-inc.md",
             "response": []
         },
         "trial-1-ci": {"baseComponent": "trial", "parameters": {"index": 1, "vis": "ci"}, "helpTextPath": "incentives-dm/assets/help-full-ci.md"},
@@ -327,9 +327,9 @@
                 "type": "longText"
             }]
         },
-        "qual-q-inc-lg": {
+        "qual-q-inc": {
             "baseComponent": "summary", 
-            "parameters": {"inc": "inc-lg"},
+            "parameters": {"inc": "inc"},
             "response": [{
                 "id": "prolificId",
                 "prompt": "",
@@ -362,7 +362,7 @@
                 "type": "longText"
             }, {
                 "id": "qual-incentive-effect",
-                "prompt": "If you were given a guaranteed amount of $3.5 (instead of the current reward structure---guaranteed amount of $2 and bonus of $0.5 for every $1000 left in a bank account that you received), how do you think your performance would have changed?",
+                "prompt": "If you were given a guaranteed amount of $3.5 (instead of the current reward structure——guaranteed amount of $2 and bonus of $0.5 for every $1000 left in a bank account that you received), how do you think your performance would have changed?",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "longText"
@@ -377,10 +377,10 @@
                 "order": "fixed",
                 "components": ["introduction-base", "consent-base"]
             }, {
-                "id": "inc-lg",
+                "id": "inc",
                 "conditional": true,
                 "order": "fixed",
-                "components": ["introduction-inc-lg", "consent-inc-lg"]
+                "components": ["introduction-inc", "consent-inc"]
             }, {
                 "id": "ci",
                 "conditional": true,
@@ -411,10 +411,10 @@
                 "order": "fixed",
                 "components": ["task-details-base"]
             }, {
-                "id": "inc-lg",
+                "id": "inc",
                 "conditional": true,
                 "order": "fixed",
-                "components": ["task-details-inc-lg"]
+                "components": ["task-details-inc"]
             }, {
                 "id": "ci",
                 "conditional": true,
@@ -477,10 +477,10 @@
                 "order": "fixed",
                 "components": ["qual-q-base"]
             }, {
-                "id": "inc-lg",
+                "id": "inc",
                 "conditional": true,
                 "order": "fixed",
-                "components": ["qual-q-inc-lg"]
+                "components": ["qual-q-inc"]
             }
         ]
     }

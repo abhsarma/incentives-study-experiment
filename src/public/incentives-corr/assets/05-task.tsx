@@ -77,14 +77,14 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
         return Object.entries(answers).find(([key, _]) => key.split("_")[0] === `test-${index}-${vis}`)?.[1];
     }, [answers, index]);
 
-    const previousTotal = useMemo(() => {
+    const previousTotal:number = useMemo(() => {
         let previous = current ? Object.values(answers).find((val) => +val.trialOrder === +current.trialOrder - 1) : null;
 
         if (!previous) {
             return 0
         }
 
-        return previous.answer.total;
+        return Number(previous.answer.total);
     }, [answers, index]);
 
     const trialIndex = useMemo(() => {
@@ -104,8 +104,9 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
 
     return (
         <Stack style={{ width: '100%', height: '100%' }}>
-            <h3>Trial number:<span id="task-index"> {trialIndex}</span>/45</h3>
+            <h3 className="trialHeader">Trial number:<span id="task-index"> {trialIndex}</span>/65</h3>
             <Text>
+                <span className="score">{trialIndex > 1 ? "You've correctly answered "+ previousTotal + " question(s) so far. Your bonus is currently at $" + Math.round(previousTotal * 5) / 100 : ''}</span><br/><br/>
                 <span className="questionPrompt">Please select the visualization that appears to have a larger correlation.</span>
                 <span className="requiredQuestion">*</span><br/>
                 <span className="questionSecondaryText">You can either click the buttons (A or B) or use the‚ left and right keys</span>

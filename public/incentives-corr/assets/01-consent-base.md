@@ -26,7 +26,7 @@ We expect about 150 people will be in this research study.
 - You can ask all the questions you want before you decide.
 
 **What happens if I say, “Yes, I want to be in this research”?**
-You will be presented with a tutorial of a visualization. You will then complete nine training tasks. Following the training you will be presented with the details of the experimental task, and complete 40 trials.
+You will be presented with a tutorial of a visualization. You will then complete nine training tasks. Following the training you will be presented with the details of the experimental task, and complete 65 trials.
 
 **Will being in this study help me in any way?**
 We cannot promise any benefits to you or others from your taking part in this research.
@@ -47,7 +47,7 @@ Efforts will be made to limit the use and disclosure of your personal informatio
 We will keep the information we collect about you during this research study for study recordkeeping and for potential use in future research projects. Your Prolific ID and other demographic information will be stored securely and separately from the rest of the research information we collect from you. De-identified data (without Prolific ID and demographic information) from this study may be shared with the research community, with journals in which study results are published, and with databases and data repositories used for research. We will remove or code any personal information that could directly identify you before the study data are shared. Despite these measures, we cannot guarantee anonymity of your personal data.
  
 **Will I be paid or given anything for taking part in this study?**
-You will receive a guaranteed $3.5 for your participation in this study.
+You will receive a guaranteed $2.5 for your participation in this study.
 
 **Who can I talk to?**
 This research has been reviewed and approved by the Ethics Review Board of Graz University of Technology. If you have questions, concerns, or complaints, you can contact the Principal Investigator Abhraneel Sarma (asarma@tugraz.at) or the Co-Investigator Prof. ALexander Lex (alex@tugraz.at).

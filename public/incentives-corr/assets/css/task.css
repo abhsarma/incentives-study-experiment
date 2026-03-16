@@ -19,3 +19,7 @@ ul.mantine-List-root{
     margin-left: 4px;
     font-weight: 700;
 }
+
+.trialHeader {
+    margin-bottom: 12px !important;
+}

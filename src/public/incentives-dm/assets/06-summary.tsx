@@ -36,7 +36,7 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{inc: s
         return previous.answer.simulatedResult.startingBudget - (previous.answer.decision === 'Yes' ? 1000 : previous.answer.simulatedResult.simulated < 0 ? 5000 : 0);
     }, [answers]);
 
-    const bonus = budget > 0 ? budget * 0.5 / 1000 : 0;
+    const bonus = budget > 0 ? Math.round(budget * 0.5) / 1000 : 0;
     const awardText = inc == "base" ? "" : ` This translates to a bonus of $${bonus}.`;
     const incText = (inc == "base" || budget > 0) ? "" :  `Please do not worry if you have a negative budget. You are still guaranteed the minimum amount of $${incAmount}.`
     console.log(bonus, awardText, incText);

@@ -61,6 +61,7 @@ export default function PracticeScatter({
 
     return (
         <Stack style={{ width: '100%', height: '100%' }}>
+            <h3 className="trialHeader">Training Task</h3>
             <Text>
                 <span className="questionPrompt">Please select the visualization that appears to have a larger correlation.</span>
                 <span className="requiredQuestion">*</span><br/>

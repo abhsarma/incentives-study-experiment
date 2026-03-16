@@ -34,13 +34,13 @@ function DisplayTrial({ parameters, setAnswer, answers }: StimulusParams<{inc: s
         return Number(previous.answer.total);
     }, [answers]);
 
-    const bonus = previousTotal ? previousTotal * 0.05 : 0;
+    const bonus = previousTotal ? Math.round(previousTotal * 5) / 100 : 0;
     const awardText = inc == "base" ? "" : ` This translates to a bonus of $${bonus}.`;
     console.log(bonus, awardText);
 
   return (
         <div className="chart-wrapper">
-            <p>You have completed all the trials! <b>You have correctly answered <span id="remaining-budget">{previousTotal}</span>/45</b> of the trials.</p>
+            <p>You have completed all the trials! <b>You have correctly answered <span id="remaining-budget">{previousTotal}</span>/65</b> of the trials.</p>
             <p><span id="actual-award">{awardText}</span></p>
             <p>Please answer the following open-ended questions regarding your experience in performing the tasks in this survey.</p>
         </div>
