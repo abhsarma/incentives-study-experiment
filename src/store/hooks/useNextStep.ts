@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import {
   useStoreSelector,
@@ -23,6 +23,7 @@ import {
 import { decryptIndex, encryptIndex } from '../../utils/encryptDecryptIndex';
 import { useIsAnalysis } from './useIsAnalysis';
 import { componentAnswersAreCorrect } from '../../utils/correctAnswer';
+import { useEvent } from './useEvent';
 
 function checkAllAnswersCorrect(answers: StoredAnswer['answer'], componentId: string, componentConfig: IndividualComponent | InheritedComponent, studyConfig: StudyConfig) {
   const componentName = componentId.slice(0, componentId.lastIndexOf('_'));
@@ -80,7 +81,7 @@ export function useNextStep() {
   const startTime = useMemo(() => Date.now(), [funcIndex, currentStep]);
 
   const windowEvents = useWindowEvents();
-  const goToNextStep = useCallback((collectData = true) => {
+  const goToNextStep = useEvent((collectData = true) => {
     if (typeof currentStep !== 'number') {
       return;
     }
@@ -212,7 +213,7 @@ export function useNextStep() {
     } else {
       navigate(`/${studyId}/${encryptIndex(nextStep)}${window.location.search}`);
     }
-  }, [currentStep, trialValidation, identifier, storedAnswer, windowEvents, dataCollectionEnabled, clickedPrevious, sequence, answers, startTime, funcIndex, storeDispatch, saveTrialAnswer, storageEngine, setReactiveAnswers, setMatrixAnswersCheckbox, setMatrixAnswersRadio, setRankingAnswers, studyConfig, participantSequence, navigate, studyId]);
+  });
 
   return {
     isNextDisabled,

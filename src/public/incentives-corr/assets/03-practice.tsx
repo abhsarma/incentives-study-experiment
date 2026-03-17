@@ -22,6 +22,8 @@ export default function PracticeScatter({
 
     const [responded, setResponded] = useState<boolean>(false);
 
+    const { goToNextStep } = useNextStep();
+
     // Keybinding for left (A) and right (B)
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
@@ -56,6 +58,10 @@ export default function PracticeScatter({
             } else {
                 buttonA.disabled = true;
             }
+
+            // setTimeout(() => {
+            //     goToNextStep();
+            // }, 1000);
         }
     };
 

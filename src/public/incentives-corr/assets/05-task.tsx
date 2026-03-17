@@ -67,9 +67,9 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
                 buttonA.disabled = true;
             }
 
-            // setTimeout(() => {
-            //     goToNextStep();
-            // }, 1000);
+            setTimeout(() => {
+                goToNextStep();
+            }, 1000);
         }
     };
 
