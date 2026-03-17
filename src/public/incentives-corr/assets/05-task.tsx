@@ -100,10 +100,6 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
         }
     }, [answers, index]);
 
-    // const awardText = "Your bonus is currently at $" + Math.round(previousTotal * 5) / 100
-
-    // console.log("score:", previousTotal);
-
     return (
         <Stack style={{ width: '100%', height: '100%' }}>
             <h3 className="trialHeader">Trial number:<span id="task-index"> {trialIndex}</span>/65</h3>
