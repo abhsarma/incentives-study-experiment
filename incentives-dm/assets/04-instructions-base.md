@@ -13,7 +13,7 @@ You have a budget for 18 days of $18,000. Salting all the roads in the town cost
 
 
 ### Compensation
-Please respond to the best of your ability. You will **receive $3.5** for your participation in this study.<br/><br/>
+Please respond to the best of your ability. You will **receive $2.5** for your participation in this study.<br/><br/>
 
 
 ### Note

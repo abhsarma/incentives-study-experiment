@@ -13,7 +13,7 @@ You have a budget for 18 days of $18,000. Salting all the roads in the town cost
 
 
 ### Compensation
-Please respond to the best of your ability. You are **guaranteed to receive $2** regardless of how you perform in the trials. In addition, you will **receive an extra $0.5 (50 cents) for every $1,000 that you have in your budget** at the end of the 18 days.<br/><br/>
+Please respond to the best of your ability. You are **guaranteed to receive $1.25** regardless of how you perform in the trials. In addition, you will **receive an extra $0.5 (50 cents) for every $1,000 that you have in your budget** at the end of the 18 days.<br/><br/>
 
 
 ### Note
