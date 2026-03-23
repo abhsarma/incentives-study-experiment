@@ -304,7 +304,7 @@
             }, {
                 "id": "qual-incentive-freq",
                 "prompt": "How often do you encounter surveys with performance-based bonuses?",
-                "secondaryText": "Decision-making studies such as this one often include performance-based bonuses (for example, instead of a guaranteed amount of $3.5, you would have been paid a guaranteed amount of $2, and awarded a bonus of $0.5 for every $1000 left in a bank account).",
+                "secondaryText": "Decision-making studies such as this one often include performance-based bonuses (for example, instead of a guaranteed amount of $3, you would have been paid a guaranteed amount of $1.5, and awarded a bonus of $0.5 for every $1000 left in a bank account).",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "likert",
@@ -321,7 +321,7 @@
                 "type": "longText"
             }, {
                 "id": "qual-incentive-effect",
-                "prompt": "If you would have been paid a guaranteed amount of $1.5 and awarded a bonus of $0.5 for every $1000 left in a bank account (instead of the guaranteed amount of $3.5), how do you think your performance would have changed?",
+                "prompt": "If you would have been paid a guaranteed amount of $1.5 and awarded a bonus of $0.5 for every $1000 left in a bank account (instead of the guaranteed amount of $3), how do you think your performance would have changed?",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "longText"
@@ -362,7 +362,7 @@
                 "type": "longText"
             }, {
                 "id": "qual-incentive-effect",
-                "prompt": "If you were given a guaranteed amount of $3.5 (instead of the current reward structure——guaranteed amount of $2 and bonus of $0.5 for every $1000 left in a bank account that you received), how do you think your performance would have changed?",
+                "prompt": "If you were given a guaranteed amount of $3 (instead of the current reward structure——guaranteed amount of $1.5 and bonus of $0.5 for every $1000 left in a bank account that you received), how do you think your performance would have changed?",
                 "required": true,
                 "location": "belowStimulus",
                 "type": "longText"
