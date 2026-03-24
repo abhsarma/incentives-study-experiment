@@ -5,6 +5,7 @@ import ParallelCoords from './parallelcoords';
 import Result from './responseFeedback';
 import { StimulusParams } from '../../../store/types';
 import { useNextStep } from '../../../store/hooks/useNextStep';
+import { C } from 'react-router/dist/development/index-react-server-client-1TI9M9o1';
 
 export default function PracticeScatter({setAnswer, answers, parameters}: StimulusParams<{ taskid: string, r1: number; r2: number, vis: string, index: number}>) {
     const [result, setResult] = useState<string | null>(null);
@@ -15,8 +16,6 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
     }, [r1, r2])
     const rr1 = r[0];
     const rr2 = r[1];
-
-    console.log(taskid, index);
 
     const shouldNegate = false;
     const correlationDirection = "positive";
@@ -30,8 +29,6 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
         r1DatasetName = `test/dataset_${rr1}_size_100.csv`;
         r2DatasetName = `test/dataset_${rr2}_size_100.csv`;
     }
-
-    console.log(r1DatasetName, r2DatasetName)
 
     const buttonARef = useRef<HTMLButtonElement | null>(null);
     const buttonBRef = useRef<HTMLButtonElement | null>(null);
@@ -60,8 +57,12 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
             setResponded(true);
         
             const correct = (n === 1 && rr1 > rr2) || (n === 2 && rr2 > rr1);
-            console.log(n, rr1, rr2, correct);
-            const total = previousTotal? Number(previousTotal) + Number(correct) : Number(correct);
+            let total;
+            if (taskid != "attention") {
+                total =  previousTotal ? Number(previousTotal) + Number(correct) : Number(correct);
+            } else {
+                total = previousTotal ? Number(previousTotal) : 0;
+            }
 
             setResult(correct ? 'Correct' : 'Incorrect');
             setAnswer({
@@ -86,7 +87,12 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
     };
 
     const current = useMemo(() => {
-        return Object.entries(answers).find(([key, _]) => key.split("_")[0] === `test-${index}-${vis}`)?.[1];
+        let test = Object.entries(answers).find(([key, _]) => key.split("_")[0] === `test-${index}-${vis}`)?.[1];
+        if (!test) {
+            let attention = Object.entries(answers).find(([key, _]) => key.split("_")[0] === `attnCheck-${index - 65}-${vis}`)?.[1];
+            return attention
+        }
+        return test
     }, [answers, index]);
 
     const previousTotal:number = useMemo(() => {
@@ -104,8 +110,11 @@ export default function PracticeScatter({setAnswer, answers, parameters}: Stimul
             // gets the number of pre-trial pages by matching on first instance of trials in the `key` of the answers object
             // so that the correct trial index is shown to participants
             const intro_page_count = Number(Object.entries(answers).find(([key, _]) => key.split("_")[0].includes("test"))?.[0].split("_")[1]);
+            const prevAttnChecks = Object.keys(answers).slice(0, +current.trialOrder).map(d => d.split("-")[0]).reduce((a, v) => (v == "attnCheck" ? a + 1 : a), 0);
             
-            const trialIndex = +current.trialOrder - intro_page_count + 1;
+            console.log(prevAttnChecks);
+
+            const trialIndex = +current.trialOrder - intro_page_count - prevAttnChecks + 1;
             return trialIndex < 1 ? 1 : trialIndex;
         } else {
             return 1
